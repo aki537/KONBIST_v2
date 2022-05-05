@@ -1,0 +1,6 @@
+FROM node:18.1.0
+
+ENV LANG=C.UTF-8
+ENV TZ=Asia/Tokyo
+
+WORKDIR /app

@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      # args:
+    # command: 
+    # environment:
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./backend:/var/task:cached
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build: 
+      context: ./frontend
+      args:
+        API_URL: "http://localhost:8080"
+    command: yarn start
+    volumes:
+      - ./frontend:/app:cached
+      # - front-node_modules:/$WORKDIR/node_modules
+    ports:
+      - "8080:3000"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
