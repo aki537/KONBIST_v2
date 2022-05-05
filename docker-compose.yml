@@ -3,7 +3,7 @@ version: "3.8"
 services:
   backend:
     build: 
-      context: ./backend
+      context: ./docker/go
       # args:
     # command: 
     # environment:
@@ -13,19 +13,19 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - "3000:3000"
+      - "8080:3000"
 
   frontend:
     build: 
-      context: ./frontend
+      context: ./docker/typescript
       args:
         API_URL: "http://localhost:8080"
-    command: yarn start
+    command: npm start
     volumes:
       - ./frontend:/app:cached
       # - front-node_modules:/$WORKDIR/node_modules
     ports:
-      - "8080:3000"
+      - "3000:3000"
     stdin_open: true
     tty: true
     depends_on:
