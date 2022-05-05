@@ -14,3 +14,10 @@ https://github.com/aki537/KONBIST
     * インフラ：Lambda
 * フロントエンド：TypeScript + React 
     * インフラ：ECS
+
+### Docker
+```
+docker-compose build
+
+docker-compose run --rm frontend sh -c 'npx create-react-app . --template typescript'
+```
